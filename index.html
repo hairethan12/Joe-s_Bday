@@ -2,43 +2,70 @@
 <html>
   <head>
     <title>Happy Birthday!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      html,
       body {
+        height: 100%;
         margin: 0;
         padding: 0;
+      }
+
+      body {
         background-image: url("IMG_3475.PNG");
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: center 20%;
+        background-position: center 20%; /* tweak this if needed */
         font-family: "Comic Sans MS", cursive, sans-serif;
         color: lime;
         text-align: center;
+        overflow-x: hidden;
       }
 
       h1 {
         margin-top: 30px;
-        font-size: 3em;
+        font-size: clamp(2rem, 5vw, 3rem); /* scales between 2rem–3rem */
         text-shadow: 2px 2px 8px #000000;
       }
 
       h2 {
-        font-size: 2em;
+        font-size: clamp(1.2rem, 4vw, 2rem); /* scales between 1.2rem–2rem */
         margin-top: 10px;
       }
 
       #musicPopup {
         position: fixed;
-        top: 50%;
+        top: 65%;
         left: 50%;
         transform: translate(-50%, -50%);
         background: black;
         color: lime;
-        padding: 20px;
-        font-size: 20px;
+        padding: 1rem 1.5rem;
+        font-size: clamp(1rem, 4vw, 1.5rem);
         border: 3px dashed magenta;
+        border-radius: 12px;
         z-index: 9999;
         text-align: center;
         cursor: pointer;
+        box-shadow: 0 0 10px lime;
+        max-width: 90%;
+        word-wrap: break-word;
+      }
+
+      #musicPopup:hover {
+        animation: pulse 1s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 10px lime;
+        }
+        50% {
+          box-shadow: 0 0 20px magenta;
+        }
+        100% {
+          box-shadow: 0 0 10px lime;
+        }
       }
     </style>
   </head>
@@ -46,11 +73,9 @@
     <h1>🎉 Happy Birthday Joe!!! 🎉</h1>
     <h2>You are invited to Joe's Tub n' Grub Saturday May 31st!</h2>
 
-    <!-- Music popup button -->
-    <div id="musicPopup">🎵 Click here to blast the birthday beats 🎵</div>
-
-    <!-- YouTube player -->
     <div id="player"></div>
+
+    <div id="musicPopup">🎵 Click here to blast the birthday beats 🎵</div>
 
     <!-- YouTube API script -->
     <script>
@@ -60,7 +85,7 @@
         player = new YT.Player("player", {
           height: "0",
           width: "0",
-          videoId: "3o_XA83KEvI", // Your YouTube video
+          videoId: "3o_XA83KEvI", // your video ID
           playerVars: {
             autoplay: 0,
             loop: 1,
