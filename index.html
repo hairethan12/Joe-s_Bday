@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Happy Birthday!</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url("IMG_3475.PNG");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center 20%;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        color: lime;
+        text-align: center;
+      }
+
+      h1 {
+        margin-top: 30px;
+        font-size: 3em;
+        text-shadow: 2px 2px 8px #000000;
+      }
+
+      h2 {
+        font-size: 2em;
+        margin-top: 10px;
+      }
+
+      #musicPopup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: black;
+        color: lime;
+        padding: 20px;
+        font-size: 20px;
+        border: 3px dashed magenta;
+        z-index: 9999;
+        text-align: center;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎉 Happy Birthday Joe!!! 🎉</h1>
+    <h2>You are invited to Joe's Tub n' Grub Saturday May 31st!</h2>
+
+    <!-- Music popup button -->
+    <div id="musicPopup">🎵 Click here to blast the birthday beats 🎵</div>
+
+    <!-- YouTube player -->
+    <div id="player"></div>
+
+    <!-- YouTube API script -->
+    <script>
+      var player;
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player("player", {
+          height: "0",
+          width: "0",
+          videoId: "3o_XA83KEvI", // Your YouTube video
+          playerVars: {
+            autoplay: 0,
+            loop: 1,
+            playlist: "3o_XA83KEvI",
+          },
+        });
+      }
+
+      document
+        .getElementById("musicPopup")
+        .addEventListener("click", function () {
+          this.style.display = "none";
+          player.playVideo();
+        });
+    </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+  </body>
+</html>
